@@ -3,7 +3,10 @@ package com.example.propertymanagment;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Switch;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -12,10 +15,12 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getSupportActionBar().setTitle("Chats");
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -28,10 +33,37 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         if (currentUser == null){
-            Intent startIntent = new Intent(
-                    MainActivity.this, StartActivity.class);
-            startActivity(startIntent);
-            finish();
+
+            sendToStartActivity();
         }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.chat_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.main_signout_button){
+            FirebaseAuth.getInstance().signOut();
+            sendToStartActivity();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void sendToStartActivity(){
+
+        Intent startIntent = new Intent(
+                MainActivity.this, StartActivity.class);
+        startActivity(startIntent);
+        finish();
     }
 }
