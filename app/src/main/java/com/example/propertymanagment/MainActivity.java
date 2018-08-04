@@ -11,7 +11,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +19,6 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        //todo - fix why the toolbar isn't showing in the 'app toolbar xml'
-        mToolbar = (Toolbar) findViewById(R.id.main_app_bar);
-        getSupportActionBar(mToolbar);
     }
 
     @Override
