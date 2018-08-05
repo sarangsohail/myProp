@@ -17,7 +17,7 @@ public class StartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start);
 
         mButtonReg = (Button) findViewById(R.id.start_reg_button);
-        mButtonSign = (Button) findViewById(R.id.login_button);
+        mButtonSign = (Button) findViewById(R.id.already_have_button_start);
 
 
         mButtonReg.setOnClickListener(new View.OnClickListener() {
@@ -28,7 +28,14 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
+        mButtonSign.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent loginIntent = new Intent(StartActivity.this, LoginActivity.class);
+                startActivity(loginIntent);
 
+            }
+        });
 
     }
 }

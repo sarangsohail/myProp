@@ -36,7 +36,7 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/already_have_account_btn"
+        android:id="@+id/already_have_button_start"
         android:layout_width="203dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
