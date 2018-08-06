@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity {
 
                      spinner.setVisibility(View.INVISIBLE);
                     Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                    //stops the activity from going back to previous activity
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(mainIntent);
                     finish();

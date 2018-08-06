@@ -73,6 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
                            spinner.setVisibility(View.INVISIBLE);
 
                            Intent mainIntent = new Intent(RegisterActivity.this, StartActivity.class);
+                           //stops the activity from going back to previous activity
                            mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                            startActivity(mainIntent);
                            Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
