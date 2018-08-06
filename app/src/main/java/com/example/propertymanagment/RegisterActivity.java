@@ -88,16 +88,24 @@ public class RegisterActivity extends AppCompatActivity {
                            usermap.put("image", "default");
                            usermap.put("thumb_image", "default");
 
+                           mDatabase.setValue(usermap).addOnCompleteListener(new OnCompleteListener<Void>() {
+                               @Override
+                               public void onComplete(@NonNull Task<Void> task) {
 
+                                   if (task.isSuccessful()){
+                                       spinner.setVisibility(View.INVISIBLE);
 
-//                           spinner.setVisibility(View.INVISIBLE);
-//
-//                           Intent mainIntent = new Intent(RegisterActivity.this, StartActivity.class);
-//                           //stops the activity from going back to previous activity
-//                           mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//                           startActivity(mainIntent);
-//                           Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-//                           finish();
+                                       Intent mainIntent = new Intent(RegisterActivity.this, StartActivity.class);
+                                       //stops the activity from going back to previous activity
+                                       mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                       startActivity(mainIntent);
+                                       Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+                                       finish();
+
+                                   }
+                               }
+                           });
+
 
                        }else{
                            spinner.setVisibility(View.INVISIBLE);
