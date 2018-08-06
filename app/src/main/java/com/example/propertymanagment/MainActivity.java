@@ -1,6 +1,7 @@
 package com.example.propertymanagment;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager mViewPager;
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private TabLayout mTabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +32,12 @@ public class MainActivity extends AppCompatActivity {
 
         //tab viewpager
         mViewPager = (ViewPager) findViewById(R.id.mainPager);
+        mSectionsPagerAdapter  = new SectionsPagerAdapter(getSupportFragmentManager());
 
+        mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        mTabLayout = (TabLayout) findViewById(R.id.main_tabs);
+        mTabLayout.setupWithViewPager(mViewPager);
     }
 
     @Override
@@ -75,3 +82,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 }
+
+//todo  - fix the main activity xml loading issue and drag the viewpager down
