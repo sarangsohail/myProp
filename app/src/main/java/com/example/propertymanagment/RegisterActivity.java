@@ -16,6 +16,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -26,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
 
+    private DatabaseReference mDatabase;
     //progress dialog
     private ProgressBar spinner;
     @Override
@@ -63,21 +69,35 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
             //register user code
-            private void registerUser(String display_name, String email, String password) {
+            private void registerUser(final String display_name, final String email, final String password) {
 
                mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                    @Override
                    public void onComplete(@NonNull Task<AuthResult> task) {
                        if (task.isSuccessful()){
 
-                           spinner.setVisibility(View.INVISIBLE);
+                           FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                           String userID = firebaseUser.getUid();
 
-                           Intent mainIntent = new Intent(RegisterActivity.this, StartActivity.class);
-                           //stops the activity from going back to previous activity
-                           mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                           startActivity(mainIntent);
-                           Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-                           finish();
+                           mDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(userID);
+
+                           //used to store data in the firebase database -gi
+                           HashMap<String, String> usermap = new HashMap<>();
+                           usermap.put("name", display_name);
+                           usermap.put("status", "I'm available, contact me if you have any issues.");
+                           usermap.put("image", "default");
+                           usermap.put("thumb_image", "default");
+
+
+
+//                           spinner.setVisibility(View.INVISIBLE);
+//
+//                           Intent mainIntent = new Intent(RegisterActivity.this, StartActivity.class);
+//                           //stops the activity from going back to previous activity
+//                           mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                           startActivity(mainIntent);
+//                           Toast.makeText(RegisterActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
+//                           finish();
 
                        }else{
                            spinner.setVisibility(View.INVISIBLE);

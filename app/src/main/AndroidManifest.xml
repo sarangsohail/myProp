@@ -19,8 +19,14 @@
             </intent-filter>
         </activity>
         <activity android:name=".StartActivity" />
-        <activity android:name=".RegisterActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar" android:parentActivityName=".StartActivity"/>
-        <activity android:name=".LoginActivity" android:parentActivityName=".StartActivity"></activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:parentActivityName=".StartActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".StartActivity" />
+        <activity android:name=".SettingsActivity"></activity>
     </application>
 
 </manifest>

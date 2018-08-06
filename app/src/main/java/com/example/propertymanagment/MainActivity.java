@@ -83,4 +83,3 @@ public class MainActivity extends AppCompatActivity {
     }
 }
 
-//todo  - fix the main activity xml loading issue and drag the viewpager down
