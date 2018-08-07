@@ -1,6 +1,7 @@
 package com.example.propertymanagment;
 
 import android.content.Intent;
+import android.provider.Settings;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -69,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.main_signout_button){
             FirebaseAuth.getInstance().signOut();
             sendToStartActivity();
+        }
+
+        if (item.getItemId() == R.id.main_settings_menu_button){
+            Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(settingsIntent);
         }
 
         return super.onOptionsItemSelected(item);

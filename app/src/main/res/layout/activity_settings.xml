@@ -9,8 +9,9 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="171dp"
-        android:layout_height="171dp"
+        android:id="@+id/settings_image"
+        android:layout_width="157dp"
+        android:layout_height="151dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="33dp"
@@ -21,21 +22,22 @@
         android:id="@+id/setting_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="244dp"
-        android:text="This is this user's status"
+        android:layout_marginTop="256dp"
+        android:text="This is your status"
+        android:gravity="center"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorWhite"
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/display_name_tv2"
+        android:id="@+id/settings_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="241dp"
+        android:layout_marginTop="204dp"
         android:text="Display Name"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorWhite"
