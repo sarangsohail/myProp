@@ -185,7 +185,7 @@ public class SettingsActivity extends AppCompatActivity {
                             Toast.makeText(SettingsActivity.this, "working", Toast.LENGTH_SHORT).show();
 
                         }else{
-                            Toast.makeText(SettingsActivity.this, "error uploading the image", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SettingsActivity.this, "There was an problem uploading your image", Toast.LENGTH_SHORT).show();
                             mProgressBar.setVisibility(View.INVISIBLE);
                         }
                     }
