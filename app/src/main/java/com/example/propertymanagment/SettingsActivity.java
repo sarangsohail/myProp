@@ -91,7 +91,15 @@ public class SettingsActivity extends AppCompatActivity {
                 mName.setText(name);
                 mStatus.setText(status);
 
-                Picasso.get().load(image).into(mCircleImageView);
+                //todo - default picture works, but not when changed
+                if (!image.equals("default"))
+                {
+                    Picasso.get().load(image).into(mCircleImageView);
+                }
+                else {
+                    Picasso.get().load(image).placeholder(R.drawable.default_profile_pic).into(mCircleImageView);
+                }
+//                Picasso.get().load(image).into(mCircleImageView);
             }
 
             @Override
@@ -169,8 +177,8 @@ public class SettingsActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
 
-                            //todo - the profilepicture setting is not working
-                            String download_url = task.getResult().getStorage().getDownloadUrl().toString();
+
+                            String download_url = task.getResult().getDownloadUrl().toString();
 
                             mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
