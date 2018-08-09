@@ -170,9 +170,9 @@ public class SettingsActivity extends AppCompatActivity {
                         if (task.isSuccessful()){
 
                             // todo the 'get.downloadedable' method is done, sort this out
-                            String downloadedURL = task.getResult().toString();
+                            String download_url = task.getResult().getStorage().getDownloadUrl().toString();
 
-                            mUserDatabase.child("image").setValue(downloadedURL).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
