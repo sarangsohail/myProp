@@ -1,5 +1,6 @@
 package com.example.propertymanagment;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -53,6 +54,18 @@ public class UsersActivity extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull UsersViewHolder holder, int position, @NonNull Users users) {
                 holder.setName(users.getName());
                 holder.setStatus(users.getStatus());
+
+                final String user_id = getRef(position).getKey();
+                holder.mView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                       Intent profile_intent = new Intent(UsersActivity.this, ProfileActivity.class);
+                       profile_intent.putExtra("user_id", user_id);
+                       startActivity(profile_intent);
+
+                    }
+                });
 
             }
 

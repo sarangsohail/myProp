@@ -2,6 +2,7 @@ package com.example.propertymanagment;
 
 public class Users {
 
+    //model for the tenants/users
     public String name;
     public String image;
     public String status;
