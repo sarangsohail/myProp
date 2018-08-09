@@ -161,7 +161,7 @@ public class SettingsActivity extends AppCompatActivity {
                 mProgressBar.setVisibility(View.VISIBLE);
                 Uri resultUri = result.getUri();
 
-                StorageReference filepath = mStorageRef.child("profile_images").child(current_user_ID + "jpg");
+                final StorageReference filepath = mStorageRef.child("profile_images").child(current_user_ID + "jpg");
 
                 filepath.putFile(resultUri).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -169,9 +169,10 @@ public class SettingsActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
 
-                            String downloadURL = task.getResult().getDownloadUrl().toString();
+                            // todo the 'get.downloadedable' method is done, sort this out
+                            String downloadedURL = task.getResult().toString();
 
-                            mUserDatabase.child("image").setValue(downloadURL).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            mUserDatabase.child("image").setValue(downloadedURL).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
