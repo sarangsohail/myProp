@@ -169,7 +169,7 @@ public class SettingsActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
 
-                            // todo the 'get.downloadedable' method is done, sort this out
+                            //todo - the profilepicture setting is not working
                             String download_url = task.getResult().getStorage().getDownloadUrl().toString();
 
                             mUserDatabase.child("image").setValue(download_url).addOnCompleteListener(new OnCompleteListener<Void>() {
