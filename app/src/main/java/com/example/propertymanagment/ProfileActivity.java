@@ -67,12 +67,14 @@ public class ProfileActivity extends AppCompatActivity {
 
         mRootRef = FirebaseDatabase.getInstance().getReference();
 
+        //firebase instansitations
         mUsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(user_id);
         mFriendReqDatabase = FirebaseDatabase.getInstance().getReference().child("Friend_req");
         mFriendDatabase = FirebaseDatabase.getInstance().getReference().child("Friends");
         mNotificationDatabase = FirebaseDatabase.getInstance().getReference().child("notifications");
         mCurrent_user = FirebaseAuth.getInstance().getCurrentUser();
 
+        //view initialisations
         mProfileImage = (ImageView) findViewById(R.id.profile_image);
         mProfileName = (TextView) findViewById(R.id.profile_displayName);
         mProfileStatus = (TextView) findViewById(R.id.profile_status);
@@ -91,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                //display tenants information
                 String display_name = dataSnapshot.child("name").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
@@ -168,9 +171,6 @@ public class ProfileActivity extends AppCompatActivity {
                             });
 
                         }
-
-
-
                     }
 
                     @Override
@@ -178,8 +178,6 @@ public class ProfileActivity extends AppCompatActivity {
 
                     }
                 });
-
-
             }
 
             @Override
@@ -199,7 +197,7 @@ public class ProfileActivity extends AppCompatActivity {
 
                 if(mCurrent_state.equals("not_friends")){
 
-
+                    //dealing with tenant/friend request notifications
                     DatabaseReference newNotificationref = mRootRef.child("notifications").child(user_id).push();
                     String newNotificationId = newNotificationref.getKey();
 

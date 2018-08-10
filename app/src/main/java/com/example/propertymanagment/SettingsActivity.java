@@ -77,8 +77,10 @@ public class SettingsActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference();
 
         String currentUID = mCurrentUser.getUid();
-        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID);
 
+
+        mUserDatabase = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUID);
+        mUserDatabase.keepSynced(true);
         mUserDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -86,7 +88,6 @@ public class SettingsActivity extends AppCompatActivity {
                 String name = dataSnapshot.child("name").getValue().toString();
                 String image = dataSnapshot.child("image").getValue().toString();
                 String status = dataSnapshot.child("status").getValue().toString();
-                String thumbnail = dataSnapshot.child("thumb_image").getValue().toString();
 
                 mName.setText(name);
                 mStatus.setText(status);
@@ -99,7 +100,6 @@ public class SettingsActivity extends AppCompatActivity {
                 else {
                     Picasso.get().load(image).placeholder(R.drawable.default_profile_pic).into(mCircleImageView);
                 }
-//                Picasso.get().load(image).into(mCircleImageView);
             }
 
             @Override
@@ -206,15 +206,5 @@ public class SettingsActivity extends AppCompatActivity {
             }
         }
     }
-    public static String random() {
-        Random generator = new Random();
-        StringBuilder randomStringBuilder = new StringBuilder();
-        int randomLength = generator.nextInt(10);
-        char tempChar;
-        for (int i = 0; i < randomLength; i++){
-            tempChar = (char) (generator.nextInt(96) + 32);
-            randomStringBuilder.append(tempChar);
-        }
-        return randomStringBuilder.toString();
-    }
+
 }
